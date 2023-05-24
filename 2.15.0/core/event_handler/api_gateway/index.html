@@ -19,7 +19,7 @@
         <link rel="next" href="../appsync/">
       
       <link rel="icon" href="../../../media/aws-logo-light.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.14">
     
     
       
@@ -3002,12 +3002,13 @@ return a 200 OK HTTP status. You can optionally set a different HTTP status code
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h3 id="cors">CORS<a class="headerlink" href="#cors" title="Permanent link">&para;</a></h3>
 <p>You can configure CORS at the <code>APIGatewayRestResolver</code> constructor via <code>cors</code> parameter using the <code>CORSConfig</code> class.</p>
-<p>This will ensure that CORS headers are always returned as part of the response when your functions match the path invoked.</p>
+<p>This will ensure that CORS headers are returned as part of the response when your functions match the path invoked and the <code>Origin</code>
+matches one of the allowed values.</p>
 <details class="tip" open="open">
 <summary>Tip</summary>
 <p>Optionally disable CORS on a per path basis with <code>cors=False</code> parameter.</p>
 </details>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">setting_cors.py</label><label for="__tabbed_8_2">setting_cors_output.json</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><input id="__tabbed_8_4" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">setting_cors.py</label><label for="__tabbed_8_2">setting_cors_output.json</label><label for="__tabbed_8_3">setting_cors_extra_origins.py</label><label for="__tabbed_8_4">setting_cors_extra_origins_output.json</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -3053,7 +3054,8 @@ return a 200 OK HTTP status. You can optionally set a different HTTP status code
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
-<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Response</span>
 
 <span class="kn">from</span> <span class="nn">aws_lambda_powertools</span> <span class="kn">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">Tracer</span>
@@ -3063,9 +3065,10 @@ return a 200 OK HTTP status. You can optionally set a different HTTP status code
 
 <span class="n">tracer</span> <span class="o">=</span> <span class="n">Tracer</span><span class="p">()</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
-<span class="hll"><span class="n">cors_config</span> <span class="o">=</span> <span class="n">CORSConfig</span><span class="p">(</span><span class="n">allow_origin</span><span class="o">=</span><span class="s2">&quot;https://example.com&quot;</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-</span><span class="hll"><span class="n">app</span> <span class="o">=</span> <span class="n">APIGatewayRestResolver</span><span class="p">(</span><span class="n">cors</span><span class="o">=</span><span class="n">cors_config</span><span class="p">)</span>
-</span>
+<span class="hll"><span class="c1"># CORS will match when Origin is only https://www.example.com</span>
+</span><span class="hll"><span class="n">cors_config</span> <span class="o">=</span> <span class="n">CORSConfig</span><span class="p">(</span><span class="n">allow_origin</span><span class="o">=</span><span class="s2">&quot;https://www.example.com&quot;</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">APIGatewayRestResolver</span><span class="p">(</span><span class="n">cors</span><span class="o">=</span><span class="n">cors_config</span><span class="p">)</span>
+
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/todos&quot;</span><span class="p">)</span>
 <span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
@@ -3085,9 +3088,9 @@ return a 200 OK HTTP status. You can optionally set a different HTTP status code
 
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;todos&quot;</span><span class="p">:</span> <span class="n">todos</span><span class="o">.</span><span class="n">json</span><span class="p">()}</span>
 
-
-<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/healthcheck&quot;</span><span class="p">,</span> <span class="n">cors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># optionally removes CORS for a given route</span>
-</span><span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
+<span class="hll">
+</span><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/healthcheck&quot;</span><span class="p">,</span> <span class="n">cors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># optionally removes CORS for a given route</span>
+<span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
 <span class="k">def</span> <span class="nf">am_i_alive</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;am_i_alive&quot;</span><span class="p">:</span> <span class="s2">&quot;yes&quot;</span><span class="p">}</span>
 
@@ -3121,6 +3124,120 @@ return a 200 OK HTTP status. You can optionally set a different HTTP status code
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Response</span>
+
+<span class="kn">from</span> <span class="nn">aws_lambda_powertools</span> <span class="kn">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">Tracer</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">aws_lambda_powertools.event_handler</span> <span class="kn">import</span> <span class="n">APIGatewayRestResolver</span><span class="p">,</span> <span class="n">CORSConfig</span>
+</span><span class="kn">from</span> <span class="nn">aws_lambda_powertools.logging</span> <span class="kn">import</span> <span class="n">correlation_paths</span>
+<span class="kn">from</span> <span class="nn">aws_lambda_powertools.utilities.typing</span> <span class="kn">import</span> <span class="n">LambdaContext</span>
+
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">Tracer</span><span class="p">()</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
+<span class="hll"><span class="c1"># CORS will match when Origin is https://www.example.com OR https://dev.example.com</span>
+</span><span class="hll"><span class="n">cors_config</span> <span class="o">=</span> <span class="n">CORSConfig</span><span class="p">(</span><span class="n">allow_origin</span><span class="o">=</span><span class="s2">&quot;https://www.example.com&quot;</span><span class="p">,</span> <span class="n">extra_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;https://dev.example.com&quot;</span><span class="p">],</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">APIGatewayRestResolver</span><span class="p">(</span><span class="n">cors</span><span class="o">=</span><span class="n">cors_config</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/todos&quot;</span><span class="p">)</span>
+<span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
+<span class="k">def</span> <span class="nf">get_todos</span><span class="p">():</span>
+    <span class="n">todos</span><span class="p">:</span> <span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/todos&quot;</span><span class="p">)</span>
+    <span class="n">todos</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="c1"># for brevity, we&#39;ll limit to the first 10 only</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;todos&quot;</span><span class="p">:</span> <span class="n">todos</span><span class="o">.</span><span class="n">json</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/todos/&lt;todo_id&gt;&quot;</span><span class="p">)</span>
+<span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
+<span class="k">def</span> <span class="nf">get_todo_by_id</span><span class="p">(</span><span class="n">todo_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># value come as str</span>
+    <span class="n">todos</span><span class="p">:</span> <span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/todos/</span><span class="si">{</span><span class="n">todo_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">todos</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;todos&quot;</span><span class="p">:</span> <span class="n">todos</span><span class="o">.</span><span class="n">json</span><span class="p">()}</span>
+
+<span class="hll">
+</span><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/healthcheck&quot;</span><span class="p">,</span> <span class="n">cors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># optionally removes CORS for a given route</span>
+<span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
+<span class="k">def</span> <span class="nf">am_i_alive</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;am_i_alive&quot;</span><span class="p">:</span> <span class="s2">&quot;yes&quot;</span><span class="p">}</span>
+
+
+<span class="c1"># You can continue to use other utilities just as before</span>
+<span class="nd">@logger</span><span class="o">.</span><span class="n">inject_lambda_context</span><span class="p">(</span><span class="n">correlation_id_path</span><span class="o">=</span><span class="n">correlation_paths</span><span class="o">.</span><span class="n">API_GATEWAY_REST</span><span class="p">)</span>
+<span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_lambda_handler</span>
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">LambdaContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;statusCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;multiValueHeaders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Content-Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;application/json&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;Access-Control-Allow-Origin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://www.example.com&quot;</span><span class="p">,</span><span class="s2">&quot;https://dev.example.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;Access-Control-Allow-Headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Authorization,Content-Type,X-Amz-Date,X-Amz-Security-Token,X-Api-Key&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;todos\&quot;:[{\&quot;userId\&quot;:1,\&quot;id\&quot;:1,\&quot;title\&quot;:\&quot;delectus aut autem\&quot;,\&quot;completed\&quot;:false},{\&quot;userId\&quot;:1,\&quot;id\&quot;:2,\&quot;title\&quot;:\&quot;quis ut nam facilis et officia qui\&quot;,\&quot;completed\&quot;:false},{\&quot;userId\&quot;:1,\&quot;id\&quot;:3,\&quot;title\&quot;:\&quot;fugiat veniam minus\&quot;,\&quot;completed\&quot;:false},{\&quot;userId\&quot;:1,\&quot;id\&quot;:4,\&quot;title\&quot;:\&quot;et porro tempora\&quot;,\&quot;completed\&quot;:true},{\&quot;userId\&quot;:1,\&quot;id\&quot;:5,\&quot;title\&quot;:\&quot;laboriosam mollitia et enim quasi adipisci quia provident illum\&quot;,\&quot;completed\&quot;:false},{\&quot;userId\&quot;:1,\&quot;id\&quot;:6,\&quot;title\&quot;:\&quot;qui ullam ratione quibusdam voluptatem quia omnis\&quot;,\&quot;completed\&quot;:false},{\&quot;userId\&quot;:1,\&quot;id\&quot;:7,\&quot;title\&quot;:\&quot;illo expedita consequatur quia in\&quot;,\&quot;completed\&quot;:false},{\&quot;userId\&quot;:1,\&quot;id\&quot;:8,\&quot;title\&quot;:\&quot;quo adipisci enim quam ut ab\&quot;,\&quot;completed\&quot;:true},{\&quot;userId\&quot;:1,\&quot;id\&quot;:9,\&quot;title\&quot;:\&quot;molestiae perspiciatis ipsa\&quot;,\&quot;completed\&quot;:false},{\&quot;userId\&quot;:1,\&quot;id\&quot;:10,\&quot;title\&quot;:\&quot;illo est ratione doloremque quia maiores aut\&quot;,\&quot;completed\&quot;:true}]}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;isBase64Encoded&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
 </div>
 </div>
 <h4 id="pre-flight">Pre-flight<a class="headerlink" href="#pre-flight" title="Permanent link">&para;</a></h4>
@@ -3131,6 +3248,10 @@ return a 200 OK HTTP status. You can optionally set a different HTTP status code
 <details class="warning" open="open">
 <summary>Warning</summary>
 <p>Always configure <code>allow_origin</code> when using in production.</p>
+</details>
+<details class="tip" open="open">
+<summary>Multiple origins?</summary>
+<p>If you need to allow multiple origins, pass the additional origins using the <code>extra_origins</code> key.</p>
 </details>
 <table>
 <thead>
@@ -3145,6 +3266,11 @@ return a 200 OK HTTP status. You can optionally set a different HTTP status code
 <td><strong><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin" target="_blank">allow_origin</a></strong>: <code>str</code></td>
 <td><code>*</code></td>
 <td>Only use the default value for development. <strong>Never use <code>*</code> for production</strong> unless your use case requires it</td>
+</tr>
+<tr>
+<td><strong><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin" target="_blank">extra_origins</a></strong>: <code>List[str]</code></td>
+<td><code>[]</code></td>
+<td>Additional origins to be allowed, in addition to the one specified in <code>allow_origin</code></td>
 </tr>
 <tr>
 <td><strong><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers" target="_blank">allow_headers</a></strong>: <code>List[str]</code></td>
@@ -3250,15 +3376,15 @@ Some event sources require headers and cookies to be encoded as <code>multiValue
     <span class="n">todos</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
     <span class="n">custom_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;X-Transaction-Id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}</span>
-<span class="hll">
-</span><span class="hll">    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+
+<span class="hll">    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
 </span><span class="hll">        <span class="n">status_code</span><span class="o">=</span><span class="n">HTTPStatus</span><span class="o">.</span><span class="n">OK</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>  <span class="c1"># 200</span>
 </span><span class="hll">        <span class="n">content_type</span><span class="o">=</span><span class="n">content_types</span><span class="o">.</span><span class="n">APPLICATION_JSON</span><span class="p">,</span>
 </span><span class="hll">        <span class="n">body</span><span class="o">=</span><span class="n">todos</span><span class="o">.</span><span class="n">json</span><span class="p">()[:</span><span class="mi">10</span><span class="p">],</span>
-</span>        <span class="n">headers</span><span class="o">=</span><span class="n">custom_headers</span><span class="p">,</span>
-        <span class="n">cookies</span><span class="o">=</span><span class="p">[</span><span class="n">Cookie</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;session_id&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;12345&quot;</span><span class="p">)],</span>
-    <span class="p">)</span>
-
+</span><span class="hll">        <span class="n">headers</span><span class="o">=</span><span class="n">custom_headers</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">cookies</span><span class="o">=</span><span class="p">[</span><span class="n">Cookie</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;session_id&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;12345&quot;</span><span class="p">)],</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
 
 <span class="c1"># You can continue to use other utilities just as before</span>
 <span class="nd">@logger</span><span class="o">.</span><span class="n">inject_lambda_context</span><span class="p">(</span><span class="n">correlation_id_path</span><span class="o">=</span><span class="n">correlation_paths</span><span class="o">.</span><span class="n">API_GATEWAY_REST</span><span class="p">)</span>
@@ -4771,7 +4897,7 @@ it made it impossible for static checkers like Mypy and IDEs IntelliSense to kno
   <small>
     
       Last update:
-      2023-02-17
+      2023-05-18
     
   </small>
 </div>
@@ -4824,7 +4950,7 @@ it made it impossible for static checkers like Mypy and IDEs IntelliSense to kno
     <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.indexes", "navigation.tracking", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../../../javascript/aws-amplify.min.js"></script>
       
