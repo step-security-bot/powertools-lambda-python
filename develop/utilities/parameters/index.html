@@ -1551,6 +1551,10 @@
 <h3 id="fetching-app-configurations">Fetching app configurations<a class="headerlink" href="#fetching-app-configurations" title="Permanent link">&para;</a></h3>
 <p>You can fetch application configurations in AWS AppConfig using <code>get_app_config</code>.</p>
 <p>The following will retrieve the latest version and store it in the cache.</p>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>We make two API calls to fetch each unique configuration name during the first time. This is by design in AppConfig. Please consider adjusting <code>max_age</code> parameter to enhance performance.</p>
+</details>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">getting_started_appconfig.py</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -3919,7 +3923,7 @@ object named <code>get_parameter_mock</code>.</p>
   <small>
     
       Last update:
-      2023-04-14
+      2023-06-05
     
   </small>
 </div>
