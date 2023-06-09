@@ -3453,11 +3453,26 @@ Some event sources require headers and cookies to be encoded as <code>multiValue
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code> <span class="kn">import</span> <span class="nn">requests</span>
- <span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code> <span class="kn">import</span> <span class="nn">requests</span>
 
  <span class="kn">from</span> <span class="nn">aws_lambda_powertools</span> <span class="kn">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">Tracer</span>
- <span class="kn">from</span> <span class="nn">aws_lambda_powertools.event_handler</span> <span class="kn">import</span> <span class="n">APIGatewayRestResolver</span>
+ <span class="kn">from</span> <span class="nn">aws_lambda_powertools.event_handler</span> <span class="kn">import</span> <span class="p">(</span>
+     <span class="n">APIGatewayRestResolver</span><span class="p">,</span>
+     <span class="n">Response</span><span class="p">,</span>
+     <span class="n">content_types</span><span class="p">,</span>
+ <span class="p">)</span>
  <span class="kn">from</span> <span class="nn">aws_lambda_powertools.logging</span> <span class="kn">import</span> <span class="n">correlation_paths</span>
  <span class="kn">from</span> <span class="nn">aws_lambda_powertools.utilities.typing</span> <span class="kn">import</span> <span class="n">LambdaContext</span>
 
@@ -3469,11 +3484,20 @@ Some event sources require headers and cookies to be encoded as <code>multiValue
 <span class="hll"> <span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/todos&quot;</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span> <span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
  <span class="k">def</span> <span class="nf">get_todos</span><span class="p">():</span>
-     <span class="n">todos</span><span class="p">:</span> <span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/todos&quot;</span><span class="p">)</span>
+     <span class="n">todos</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/todos&quot;</span><span class="p">)</span>
      <span class="n">todos</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
      <span class="c1"># for brevity, we&#39;ll limit to the first 10 only</span>
      <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;todos&quot;</span><span class="p">:</span> <span class="n">todos</span><span class="o">.</span><span class="n">json</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]}</span>
+
+
+<span class="hll"> <span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/todos/&lt;todo_id&gt;&quot;</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span> <span class="nd">@tracer</span><span class="o">.</span><span class="n">capture_method</span>
+ <span class="k">def</span> <span class="nf">get_todo_by_id</span><span class="p">(</span><span class="n">todo_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># same example using Response class</span>
+     <span class="n">todos</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/todos/</span><span class="si">{</span><span class="n">todo_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+     <span class="n">todos</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="n">content_types</span><span class="o">.</span><span class="n">APPLICATION_JSON</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">todos</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 
 
  <span class="c1"># You can continue to use other utilities just as before</span>
@@ -4897,7 +4921,7 @@ it made it impossible for static checkers like Mypy and IDEs IntelliSense to kno
   <small>
     
       Last update:
-      2023-06-08
+      2023-06-09
     
   </small>
 </div>
