@@ -3391,16 +3391,22 @@
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">aws_lambda_powertools</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">aws_lambda_powertools</span> <span class="kn">import</span> <span class="n">Logger</span>
 <span class="hll"><span class="kn">from</span> <span class="nn">aws_lambda_powertools.logging.formatter</span> <span class="kn">import</span> <span class="n">LambdaPowertoolsFormatter</span>
+</span><span class="hll"><span class="kn">from</span> <span class="nn">aws_lambda_powertools.logging.types</span> <span class="kn">import</span> <span class="n">LogRecord</span>
 </span>
 
 <span class="hll"><span class="k">class</span> <span class="nc">CustomFormatter</span><span class="p">(</span><span class="n">LambdaPowertoolsFormatter</span><span class="p">):</span>
-</span><span class="hll">    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Serialize final structured log dict to JSON str&quot;&quot;&quot;</span>
-        <span class="n">log</span><span class="p">[</span><span class="s2">&quot;event&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>  <span class="c1"># rename message key to event</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_serializer</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>  <span class="c1"># use configured json serializer</span>
-
+</span>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">LogRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Serialize final structured log dict to JSON str&quot;&quot;&quot;</span>
+        <span class="c1"># in this example, log[&quot;message&quot;] is a required field</span>
+        <span class="c1"># but we want to remap to &quot;event&quot; and delete &quot;message&quot;, hence mypy ignore checks</span>
+<span class="hll">        <span class="n">log</span><span class="p">[</span><span class="s2">&quot;event&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore[typeddict-unknown-key,misc]</span>
+</span><span class="hll">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_serializer</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
+</span>
 
 <span class="hll"><span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="s2">&quot;payment&quot;</span><span class="p">,</span> <span class="n">logger_formatter</span><span class="o">=</span><span class="n">CustomFormatter</span><span class="p">())</span>
 </span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
@@ -3934,7 +3940,7 @@ for the given name and level to the logging module. By default, this logs all bo
   <small>
     
       Last update:
-      2023-06-08
+      2023-06-14
     
   </small>
 </div>
