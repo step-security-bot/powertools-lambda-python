@@ -1,0 +1,1912 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>aws_lambda_powertools.utilities.data_classes.aws_config_rule_event API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>aws_lambda_powertools.utilities.data_classes.aws_config_rule_event</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import annotations
+
+import json
+from typing import Any, Dict, List, Optional
+
+from aws_lambda_powertools.utilities.data_classes.common import DictWrapper
+
+
+def get_invoke_event(
+    invoking_event: dict,
+) -&gt; AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:
+    &#34;&#34;&#34;
+    Returns the corresponding event object based on the messageType in the invoking event.
+
+    Parameters
+    ----------
+    invoking_event: dict
+        The invoking event received.
+
+    Returns
+    -------
+    AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:
+        The event object based on the messageType in the invoking event.
+    &#34;&#34;&#34;
+
+    message_type = invoking_event.get(&#34;messageType&#34;)
+
+    if message_type == &#34;ScheduledNotification&#34;:
+        return AWSConfigScheduledNotification(invoking_event)
+
+    if message_type == &#34;OversizedConfigurationItemChangeNotification&#34;:
+        return AWSConfigOversizedConfiguration(invoking_event)
+
+    # Default return is AWSConfigConfigurationChanged event
+    return AWSConfigConfigurationChanged(invoking_event)
+
+
+class AWSConfigConfigurationChanged(DictWrapper):
+    @property
+    def configuration_item_diff(self) -&gt; Dict:
+        &#34;&#34;&#34;The configuration item diff of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemDiff&#34;]
+
+    @property
+    def configuration_item(self) -&gt; AWSConfigConfigurationItemChanged:
+        &#34;&#34;&#34;The configuration item of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return AWSConfigConfigurationItemChanged(self[&#34;configurationItem&#34;])
+
+    @property
+    def raw_configuration_item(self) -&gt; Dict:
+        &#34;&#34;&#34;The raw configuration item of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItem&#34;]
+
+    @property
+    def record_version(self) -&gt; str:
+        &#34;&#34;&#34;The record version of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;recordVersion&#34;]
+
+    @property
+    def message_type(self) -&gt; str:
+        &#34;&#34;&#34;The message type of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;messageType&#34;]
+
+    @property
+    def notification_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The notification creation time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;notificationCreationTime&#34;]
+
+
+class AWSConfigConfigurationItemChanged(DictWrapper):
+    @property
+    def related_events(self) -&gt; List:
+        &#34;&#34;&#34;The related events of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;relatedEvents&#34;]
+
+    @property
+    def relationships(self) -&gt; List:
+        &#34;&#34;&#34;The relationships of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;relationships&#34;]
+
+    @property
+    def configuration(self) -&gt; Dict:
+        &#34;&#34;&#34;The configuration of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configuration&#34;]
+
+    @property
+    def supplementary_configuration(self) -&gt; Dict:
+        &#34;&#34;&#34;The supplementary configuration of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;supplementaryConfiguration&#34;]
+
+    @property
+    def tags(self) -&gt; Dict:
+        &#34;&#34;&#34;The tags of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;tags&#34;]
+
+    @property
+    def configuration_item_version(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item version of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemVersion&#34;]
+
+    @property
+    def configuration_item_capture_time(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item capture time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemCaptureTime&#34;]
+
+    @property
+    def configuration_state_id(self) -&gt; str:
+        &#34;&#34;&#34;The configuration state id of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationStateId&#34;]
+
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;awsAccountId&#34;]
+
+    @property
+    def configuration_item_status(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item status of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemStatus&#34;]
+
+    @property
+    def resource_type(self) -&gt; str:
+        &#34;&#34;&#34;The resource type of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceType&#34;]
+
+    @property
+    def resource_id(self) -&gt; str:
+        &#34;&#34;&#34;The resource id of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceId&#34;]
+
+    @property
+    def resource_name(self) -&gt; str:
+        &#34;&#34;&#34;The resource name of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceName&#34;]
+
+    @property
+    def resource_arn(self) -&gt; str:
+        &#34;&#34;&#34;The resource arn of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;ARN&#34;]
+
+    @property
+    def region(self) -&gt; str:
+        &#34;&#34;&#34;The region of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;awsRegion&#34;]
+
+    @property
+    def availability_zone(self) -&gt; str:
+        &#34;&#34;&#34;The availability zone of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;availabilityZone&#34;]
+
+    @property
+    def configuration_state_md5_hash(self) -&gt; str:
+        &#34;&#34;&#34;The md5 hash of the state of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationStateMd5Hash&#34;]
+
+    @property
+    def resource_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The resource creation time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceCreationTime&#34;]
+
+
+class AWSConfigScheduledNotification(DictWrapper):
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;awsAccountId&#34;]
+
+    @property
+    def notification_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The notification creation time of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;notificationCreationTime&#34;]
+
+    @property
+    def record_version(self) -&gt; str:
+        &#34;&#34;&#34;The record version of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;recordVersion&#34;]
+
+    @property
+    def message_type(self) -&gt; str:
+        &#34;&#34;&#34;The message type of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;messageType&#34;]
+
+
+class AWSConfigOversizedConfiguration(DictWrapper):
+    @property
+    def configuration_item_summary(self) -&gt; AWSConfigOversizedConfigurationItemSummary:
+        &#34;&#34;&#34;The configuration item summary of the OversizedConfiguration event.&#34;&#34;&#34;
+        return AWSConfigOversizedConfigurationItemSummary(self[&#34;configurationItemSummary&#34;])
+
+    @property
+    def raw_configuration_item_summary(self) -&gt; str:
+        &#34;&#34;&#34;The raw configuration item summary of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemSummary&#34;]
+
+    @property
+    def message_type(self) -&gt; str:
+        &#34;&#34;&#34;The message type of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;messageType&#34;]
+
+    @property
+    def notification_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The notification creation time of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;notificationCreationTime&#34;]
+
+    @property
+    def record_version(self) -&gt; str:
+        &#34;&#34;&#34;The record version of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;recordVersion&#34;]
+
+
+class AWSConfigOversizedConfigurationItemSummary(DictWrapper):
+    @property
+    def change_type(self) -&gt; str:
+        &#34;&#34;&#34;The change type of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;changeType&#34;]
+
+    @property
+    def configuration_item_version(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item version of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemVersion&#34;]
+
+    @property
+    def configuration_item_capture_time(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item capture time of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemCaptureTime&#34;]
+
+    @property
+    def configuration_state_id(self) -&gt; str:
+        &#34;&#34;&#34;The configuration state id of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationStateId&#34;]
+
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;awsAccountId&#34;]
+
+    @property
+    def configuration_item_status(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item status of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemStatus&#34;]
+
+    @property
+    def resource_type(self) -&gt; str:
+        &#34;&#34;&#34;The resource type of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceType&#34;]
+
+    @property
+    def resource_id(self) -&gt; str:
+        &#34;&#34;&#34;The resource id of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceId&#34;]
+
+    @property
+    def resource_name(self) -&gt; str:
+        &#34;&#34;&#34;The resource name of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceName&#34;]
+
+    @property
+    def resource_arn(self) -&gt; str:
+        &#34;&#34;&#34;The resource arn of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;ARN&#34;]
+
+    @property
+    def region(self) -&gt; str:
+        &#34;&#34;&#34;The region of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;awsRegion&#34;]
+
+    @property
+    def availability_zone(self) -&gt; str:
+        &#34;&#34;&#34;The availability zone of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;availabilityZone&#34;]
+
+    @property
+    def configuration_state_md5_hash(self) -&gt; str:
+        &#34;&#34;&#34;The state md5 hash  of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationStateMd5Hash&#34;]
+
+    @property
+    def resource_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The resource creation time of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceCreationTime&#34;]
+
+
+class AWSConfigRuleEvent(DictWrapper):
+    &#34;&#34;&#34;Events for AWS Config Rules
+    Documentation:
+    --------------
+    - https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_lambda-functions.html
+    &#34;&#34;&#34;
+
+    def __init__(self, data: Dict[str, Any]):
+        super().__init__(data)
+        self._invoking_event: Optional[Any] = None
+        self._rule_parameters: Optional[Any] = None
+
+    @property
+    def version(self) -&gt; str:
+        &#34;&#34;&#34;The version of the event.&#34;&#34;&#34;
+        return self[&#34;version&#34;]
+
+    @property
+    def invoking_event(
+        self,
+    ) -&gt; AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:
+        &#34;&#34;&#34;The invoking payload of the event.&#34;&#34;&#34;
+        if self._invoking_event is None:
+            self._invoking_event = self[&#34;invokingEvent&#34;]
+
+        return get_invoke_event(json.loads(self._invoking_event))
+
+    @property
+    def raw_invoking_event(self) -&gt; str:
+        &#34;&#34;&#34;The raw invoking payload of the event.&#34;&#34;&#34;
+        return self[&#34;invokingEvent&#34;]
+
+    @property
+    def rule_parameters(self) -&gt; Dict:
+        &#34;&#34;&#34;The parameters of the event.&#34;&#34;&#34;
+        if self._rule_parameters is None:
+            self._rule_parameters = self[&#34;ruleParameters&#34;]
+
+        return json.loads(self._rule_parameters)
+
+    @property
+    def result_token(self) -&gt; str:
+        &#34;&#34;&#34;The result token of the event.&#34;&#34;&#34;
+        return self[&#34;resultToken&#34;]
+
+    @property
+    def event_left_scope(self) -&gt; bool:
+        &#34;&#34;&#34;The left scope of the event.&#34;&#34;&#34;
+        return self[&#34;eventLeftScope&#34;]
+
+    @property
+    def execution_role_arn(self) -&gt; str:
+        &#34;&#34;&#34;The execution role arn of the event.&#34;&#34;&#34;
+        return self[&#34;executionRoleArn&#34;]
+
+    @property
+    def config_rule_arn(self) -&gt; str:
+        &#34;&#34;&#34;The arn of the rule of the event.&#34;&#34;&#34;
+        return self[&#34;configRuleArn&#34;]
+
+    @property
+    def config_rule_name(self) -&gt; str:
+        &#34;&#34;&#34;The name of the rule of the event.&#34;&#34;&#34;
+        return self[&#34;configRuleName&#34;]
+
+    @property
+    def config_rule_id(self) -&gt; str:
+        &#34;&#34;&#34;The id of the rule of the event.&#34;&#34;&#34;
+        return self[&#34;configRuleId&#34;]
+
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the event.&#34;&#34;&#34;
+        return self[&#34;accountId&#34;]
+
+    @property
+    def evalution_mode(self) -&gt; Optional[str]:
+        &#34;&#34;&#34;The evalution mode of the event.&#34;&#34;&#34;
+        return self.get(&#34;evaluationMode&#34;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.get_invoke_event"><code class="name flex">
+<span>def <span class="ident">get_invoke_event</span></span>(<span>invoking_event: dict) ‑> <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged">AWSConfigConfigurationChanged</a> | <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification">AWSConfigScheduledNotification</a> | <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration">AWSConfigOversizedConfiguration</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the corresponding event object based on the messageType in the invoking event.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>invoking_event</code></strong> :&ensp;<code>dict</code></dt>
+<dd>The invoking event received.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:</code></dt>
+<dd>The event object based on the messageType in the invoking event.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_invoke_event(
+    invoking_event: dict,
+) -&gt; AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:
+    &#34;&#34;&#34;
+    Returns the corresponding event object based on the messageType in the invoking event.
+
+    Parameters
+    ----------
+    invoking_event: dict
+        The invoking event received.
+
+    Returns
+    -------
+    AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:
+        The event object based on the messageType in the invoking event.
+    &#34;&#34;&#34;
+
+    message_type = invoking_event.get(&#34;messageType&#34;)
+
+    if message_type == &#34;ScheduledNotification&#34;:
+        return AWSConfigScheduledNotification(invoking_event)
+
+    if message_type == &#34;OversizedConfigurationItemChangeNotification&#34;:
+        return AWSConfigOversizedConfiguration(invoking_event)
+
+    # Default return is AWSConfigConfigurationChanged event
+    return AWSConfigConfigurationChanged(invoking_event)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged"><code class="flex name class">
+<span>class <span class="ident">AWSConfigConfigurationChanged</span></span>
+<span>(</span><span>data: Dict[str, Any], json_deserializer: Optional[Callable] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Provides a single read only access to a wrapper dict</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Lambda Event Source Event payload</dd>
+<dt><strong><code>json_deserializer</code></strong> :&ensp;<code>Callable</code>, optional</dt>
+<dd>function to deserialize <code>str</code>, <code>bytes</code>, bytearray<code> containing a JSON document to a Python </code>obj`,
+by default json.loads</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AWSConfigConfigurationChanged(DictWrapper):
+    @property
+    def configuration_item_diff(self) -&gt; Dict:
+        &#34;&#34;&#34;The configuration item diff of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemDiff&#34;]
+
+    @property
+    def configuration_item(self) -&gt; AWSConfigConfigurationItemChanged:
+        &#34;&#34;&#34;The configuration item of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return AWSConfigConfigurationItemChanged(self[&#34;configurationItem&#34;])
+
+    @property
+    def raw_configuration_item(self) -&gt; Dict:
+        &#34;&#34;&#34;The raw configuration item of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItem&#34;]
+
+    @property
+    def record_version(self) -&gt; str:
+        &#34;&#34;&#34;The record version of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;recordVersion&#34;]
+
+    @property
+    def message_type(self) -&gt; str:
+        &#34;&#34;&#34;The message type of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;messageType&#34;]
+
+    @property
+    def notification_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The notification creation time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;notificationCreationTime&#34;]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></li>
+<li>collections.abc.Mapping</li>
+<li>collections.abc.Collection</li>
+<li>collections.abc.Sized</li>
+<li>collections.abc.Iterable</li>
+<li>collections.abc.Container</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.configuration_item"><code class="name">var <span class="ident">configuration_item</span> : <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged">AWSConfigConfigurationItemChanged</a></code></dt>
+<dd>
+<div class="desc"><p>The configuration item of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item(self) -&gt; AWSConfigConfigurationItemChanged:
+    &#34;&#34;&#34;The configuration item of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return AWSConfigConfigurationItemChanged(self[&#34;configurationItem&#34;])</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.configuration_item_diff"><code class="name">var <span class="ident">configuration_item_diff</span> : Dict</code></dt>
+<dd>
+<div class="desc"><p>The configuration item diff of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_diff(self) -&gt; Dict:
+    &#34;&#34;&#34;The configuration item diff of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configurationItemDiff&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.message_type"><code class="name">var <span class="ident">message_type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The message type of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def message_type(self) -&gt; str:
+    &#34;&#34;&#34;The message type of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;messageType&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.notification_creation_time"><code class="name">var <span class="ident">notification_creation_time</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The notification creation time of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def notification_creation_time(self) -&gt; str:
+    &#34;&#34;&#34;The notification creation time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;notificationCreationTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.raw_configuration_item"><code class="name">var <span class="ident">raw_configuration_item</span> : Dict</code></dt>
+<dd>
+<div class="desc"><p>The raw configuration item of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def raw_configuration_item(self) -&gt; Dict:
+    &#34;&#34;&#34;The raw configuration item of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configurationItem&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.record_version"><code class="name">var <span class="ident">record_version</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The record version of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def record_version(self) -&gt; str:
+    &#34;&#34;&#34;The record version of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;recordVersion&#34;]</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></b></code>:
+<ul class="hlist">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get">get</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event">raw_event</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged"><code class="flex name class">
+<span>class <span class="ident">AWSConfigConfigurationItemChanged</span></span>
+<span>(</span><span>data: Dict[str, Any], json_deserializer: Optional[Callable] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Provides a single read only access to a wrapper dict</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Lambda Event Source Event payload</dd>
+<dt><strong><code>json_deserializer</code></strong> :&ensp;<code>Callable</code>, optional</dt>
+<dd>function to deserialize <code>str</code>, <code>bytes</code>, bytearray<code> containing a JSON document to a Python </code>obj`,
+by default json.loads</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AWSConfigConfigurationItemChanged(DictWrapper):
+    @property
+    def related_events(self) -&gt; List:
+        &#34;&#34;&#34;The related events of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;relatedEvents&#34;]
+
+    @property
+    def relationships(self) -&gt; List:
+        &#34;&#34;&#34;The relationships of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;relationships&#34;]
+
+    @property
+    def configuration(self) -&gt; Dict:
+        &#34;&#34;&#34;The configuration of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configuration&#34;]
+
+    @property
+    def supplementary_configuration(self) -&gt; Dict:
+        &#34;&#34;&#34;The supplementary configuration of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;supplementaryConfiguration&#34;]
+
+    @property
+    def tags(self) -&gt; Dict:
+        &#34;&#34;&#34;The tags of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;tags&#34;]
+
+    @property
+    def configuration_item_version(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item version of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemVersion&#34;]
+
+    @property
+    def configuration_item_capture_time(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item capture time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemCaptureTime&#34;]
+
+    @property
+    def configuration_state_id(self) -&gt; str:
+        &#34;&#34;&#34;The configuration state id of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationStateId&#34;]
+
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;awsAccountId&#34;]
+
+    @property
+    def configuration_item_status(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item status of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationItemStatus&#34;]
+
+    @property
+    def resource_type(self) -&gt; str:
+        &#34;&#34;&#34;The resource type of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceType&#34;]
+
+    @property
+    def resource_id(self) -&gt; str:
+        &#34;&#34;&#34;The resource id of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceId&#34;]
+
+    @property
+    def resource_name(self) -&gt; str:
+        &#34;&#34;&#34;The resource name of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceName&#34;]
+
+    @property
+    def resource_arn(self) -&gt; str:
+        &#34;&#34;&#34;The resource arn of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;ARN&#34;]
+
+    @property
+    def region(self) -&gt; str:
+        &#34;&#34;&#34;The region of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;awsRegion&#34;]
+
+    @property
+    def availability_zone(self) -&gt; str:
+        &#34;&#34;&#34;The availability zone of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;availabilityZone&#34;]
+
+    @property
+    def configuration_state_md5_hash(self) -&gt; str:
+        &#34;&#34;&#34;The md5 hash of the state of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;configurationStateMd5Hash&#34;]
+
+    @property
+    def resource_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The resource creation time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+        return self[&#34;resourceCreationTime&#34;]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></li>
+<li>collections.abc.Mapping</li>
+<li>collections.abc.Collection</li>
+<li>collections.abc.Sized</li>
+<li>collections.abc.Iterable</li>
+<li>collections.abc.Container</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.accountid"><code class="name">var <span class="ident">accountid</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The accountid of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def accountid(self) -&gt; str:
+    &#34;&#34;&#34;The accountid of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;awsAccountId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.availability_zone"><code class="name">var <span class="ident">availability_zone</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The availability zone of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def availability_zone(self) -&gt; str:
+    &#34;&#34;&#34;The availability zone of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;availabilityZone&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration"><code class="name">var <span class="ident">configuration</span> : Dict</code></dt>
+<dd>
+<div class="desc"><p>The configuration of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration(self) -&gt; Dict:
+    &#34;&#34;&#34;The configuration of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configuration&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_capture_time"><code class="name">var <span class="ident">configuration_item_capture_time</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration item capture time of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_capture_time(self) -&gt; str:
+    &#34;&#34;&#34;The configuration item capture time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configurationItemCaptureTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_status"><code class="name">var <span class="ident">configuration_item_status</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration item status of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_status(self) -&gt; str:
+    &#34;&#34;&#34;The configuration item status of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configurationItemStatus&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_version"><code class="name">var <span class="ident">configuration_item_version</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration item version of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_version(self) -&gt; str:
+    &#34;&#34;&#34;The configuration item version of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configurationItemVersion&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_state_id"><code class="name">var <span class="ident">configuration_state_id</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration state id of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_state_id(self) -&gt; str:
+    &#34;&#34;&#34;The configuration state id of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configurationStateId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_state_md5_hash"><code class="name">var <span class="ident">configuration_state_md5_hash</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The md5 hash of the state of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_state_md5_hash(self) -&gt; str:
+    &#34;&#34;&#34;The md5 hash of the state of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;configurationStateMd5Hash&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.region"><code class="name">var <span class="ident">region</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The region of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def region(self) -&gt; str:
+    &#34;&#34;&#34;The region of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;awsRegion&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.related_events"><code class="name">var <span class="ident">related_events</span> : List</code></dt>
+<dd>
+<div class="desc"><p>The related events of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def related_events(self) -&gt; List:
+    &#34;&#34;&#34;The related events of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;relatedEvents&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.relationships"><code class="name">var <span class="ident">relationships</span> : List</code></dt>
+<dd>
+<div class="desc"><p>The relationships of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def relationships(self) -&gt; List:
+    &#34;&#34;&#34;The relationships of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;relationships&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_arn"><code class="name">var <span class="ident">resource_arn</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource arn of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_arn(self) -&gt; str:
+    &#34;&#34;&#34;The resource arn of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;ARN&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_creation_time"><code class="name">var <span class="ident">resource_creation_time</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource creation time of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_creation_time(self) -&gt; str:
+    &#34;&#34;&#34;The resource creation time of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;resourceCreationTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_id"><code class="name">var <span class="ident">resource_id</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource id of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_id(self) -&gt; str:
+    &#34;&#34;&#34;The resource id of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;resourceId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_name"><code class="name">var <span class="ident">resource_name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource name of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_name(self) -&gt; str:
+    &#34;&#34;&#34;The resource name of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;resourceName&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_type"><code class="name">var <span class="ident">resource_type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource type of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_type(self) -&gt; str:
+    &#34;&#34;&#34;The resource type of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;resourceType&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.supplementary_configuration"><code class="name">var <span class="ident">supplementary_configuration</span> : Dict</code></dt>
+<dd>
+<div class="desc"><p>The supplementary configuration of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def supplementary_configuration(self) -&gt; Dict:
+    &#34;&#34;&#34;The supplementary configuration of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;supplementaryConfiguration&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.tags"><code class="name">var <span class="ident">tags</span> : Dict</code></dt>
+<dd>
+<div class="desc"><p>The tags of the ConfigurationItemChangeNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def tags(self) -&gt; Dict:
+    &#34;&#34;&#34;The tags of the ConfigurationItemChangeNotification event.&#34;&#34;&#34;
+    return self[&#34;tags&#34;]</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></b></code>:
+<ul class="hlist">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get">get</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event">raw_event</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration"><code class="flex name class">
+<span>class <span class="ident">AWSConfigOversizedConfiguration</span></span>
+<span>(</span><span>data: Dict[str, Any], json_deserializer: Optional[Callable] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Provides a single read only access to a wrapper dict</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Lambda Event Source Event payload</dd>
+<dt><strong><code>json_deserializer</code></strong> :&ensp;<code>Callable</code>, optional</dt>
+<dd>function to deserialize <code>str</code>, <code>bytes</code>, bytearray<code> containing a JSON document to a Python </code>obj`,
+by default json.loads</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AWSConfigOversizedConfiguration(DictWrapper):
+    @property
+    def configuration_item_summary(self) -&gt; AWSConfigOversizedConfigurationItemSummary:
+        &#34;&#34;&#34;The configuration item summary of the OversizedConfiguration event.&#34;&#34;&#34;
+        return AWSConfigOversizedConfigurationItemSummary(self[&#34;configurationItemSummary&#34;])
+
+    @property
+    def raw_configuration_item_summary(self) -&gt; str:
+        &#34;&#34;&#34;The raw configuration item summary of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemSummary&#34;]
+
+    @property
+    def message_type(self) -&gt; str:
+        &#34;&#34;&#34;The message type of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;messageType&#34;]
+
+    @property
+    def notification_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The notification creation time of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;notificationCreationTime&#34;]
+
+    @property
+    def record_version(self) -&gt; str:
+        &#34;&#34;&#34;The record version of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;recordVersion&#34;]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></li>
+<li>collections.abc.Mapping</li>
+<li>collections.abc.Collection</li>
+<li>collections.abc.Sized</li>
+<li>collections.abc.Iterable</li>
+<li>collections.abc.Container</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.configuration_item_summary"><code class="name">var <span class="ident">configuration_item_summary</span> : <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary">AWSConfigOversizedConfigurationItemSummary</a></code></dt>
+<dd>
+<div class="desc"><p>The configuration item summary of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_summary(self) -&gt; AWSConfigOversizedConfigurationItemSummary:
+    &#34;&#34;&#34;The configuration item summary of the OversizedConfiguration event.&#34;&#34;&#34;
+    return AWSConfigOversizedConfigurationItemSummary(self[&#34;configurationItemSummary&#34;])</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.message_type"><code class="name">var <span class="ident">message_type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The message type of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def message_type(self) -&gt; str:
+    &#34;&#34;&#34;The message type of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;messageType&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.notification_creation_time"><code class="name">var <span class="ident">notification_creation_time</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The notification creation time of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def notification_creation_time(self) -&gt; str:
+    &#34;&#34;&#34;The notification creation time of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;notificationCreationTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.raw_configuration_item_summary"><code class="name">var <span class="ident">raw_configuration_item_summary</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The raw configuration item summary of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def raw_configuration_item_summary(self) -&gt; str:
+    &#34;&#34;&#34;The raw configuration item summary of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;configurationItemSummary&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.record_version"><code class="name">var <span class="ident">record_version</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The record version of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def record_version(self) -&gt; str:
+    &#34;&#34;&#34;The record version of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;recordVersion&#34;]</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></b></code>:
+<ul class="hlist">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get">get</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event">raw_event</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary"><code class="flex name class">
+<span>class <span class="ident">AWSConfigOversizedConfigurationItemSummary</span></span>
+<span>(</span><span>data: Dict[str, Any], json_deserializer: Optional[Callable] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Provides a single read only access to a wrapper dict</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Lambda Event Source Event payload</dd>
+<dt><strong><code>json_deserializer</code></strong> :&ensp;<code>Callable</code>, optional</dt>
+<dd>function to deserialize <code>str</code>, <code>bytes</code>, bytearray<code> containing a JSON document to a Python </code>obj`,
+by default json.loads</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AWSConfigOversizedConfigurationItemSummary(DictWrapper):
+    @property
+    def change_type(self) -&gt; str:
+        &#34;&#34;&#34;The change type of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;changeType&#34;]
+
+    @property
+    def configuration_item_version(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item version of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemVersion&#34;]
+
+    @property
+    def configuration_item_capture_time(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item capture time of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemCaptureTime&#34;]
+
+    @property
+    def configuration_state_id(self) -&gt; str:
+        &#34;&#34;&#34;The configuration state id of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationStateId&#34;]
+
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;awsAccountId&#34;]
+
+    @property
+    def configuration_item_status(self) -&gt; str:
+        &#34;&#34;&#34;The configuration item status of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationItemStatus&#34;]
+
+    @property
+    def resource_type(self) -&gt; str:
+        &#34;&#34;&#34;The resource type of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceType&#34;]
+
+    @property
+    def resource_id(self) -&gt; str:
+        &#34;&#34;&#34;The resource id of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceId&#34;]
+
+    @property
+    def resource_name(self) -&gt; str:
+        &#34;&#34;&#34;The resource name of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceName&#34;]
+
+    @property
+    def resource_arn(self) -&gt; str:
+        &#34;&#34;&#34;The resource arn of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;ARN&#34;]
+
+    @property
+    def region(self) -&gt; str:
+        &#34;&#34;&#34;The region of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;awsRegion&#34;]
+
+    @property
+    def availability_zone(self) -&gt; str:
+        &#34;&#34;&#34;The availability zone of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;availabilityZone&#34;]
+
+    @property
+    def configuration_state_md5_hash(self) -&gt; str:
+        &#34;&#34;&#34;The state md5 hash  of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;configurationStateMd5Hash&#34;]
+
+    @property
+    def resource_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The resource creation time of the OversizedConfiguration event.&#34;&#34;&#34;
+        return self[&#34;resourceCreationTime&#34;]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></li>
+<li>collections.abc.Mapping</li>
+<li>collections.abc.Collection</li>
+<li>collections.abc.Sized</li>
+<li>collections.abc.Iterable</li>
+<li>collections.abc.Container</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.accountid"><code class="name">var <span class="ident">accountid</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The accountid of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def accountid(self) -&gt; str:
+    &#34;&#34;&#34;The accountid of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;awsAccountId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.availability_zone"><code class="name">var <span class="ident">availability_zone</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The availability zone of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def availability_zone(self) -&gt; str:
+    &#34;&#34;&#34;The availability zone of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;availabilityZone&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.change_type"><code class="name">var <span class="ident">change_type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The change type of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def change_type(self) -&gt; str:
+    &#34;&#34;&#34;The change type of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;changeType&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_capture_time"><code class="name">var <span class="ident">configuration_item_capture_time</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration item capture time of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_capture_time(self) -&gt; str:
+    &#34;&#34;&#34;The configuration item capture time of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;configurationItemCaptureTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_status"><code class="name">var <span class="ident">configuration_item_status</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration item status of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_status(self) -&gt; str:
+    &#34;&#34;&#34;The configuration item status of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;configurationItemStatus&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_version"><code class="name">var <span class="ident">configuration_item_version</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration item version of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_item_version(self) -&gt; str:
+    &#34;&#34;&#34;The configuration item version of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;configurationItemVersion&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_state_id"><code class="name">var <span class="ident">configuration_state_id</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The configuration state id of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_state_id(self) -&gt; str:
+    &#34;&#34;&#34;The configuration state id of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;configurationStateId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_state_md5_hash"><code class="name">var <span class="ident">configuration_state_md5_hash</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The state md5 hash
+of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration_state_md5_hash(self) -&gt; str:
+    &#34;&#34;&#34;The state md5 hash  of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;configurationStateMd5Hash&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.region"><code class="name">var <span class="ident">region</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The region of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def region(self) -&gt; str:
+    &#34;&#34;&#34;The region of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;awsRegion&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_arn"><code class="name">var <span class="ident">resource_arn</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource arn of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_arn(self) -&gt; str:
+    &#34;&#34;&#34;The resource arn of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;ARN&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_creation_time"><code class="name">var <span class="ident">resource_creation_time</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource creation time of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_creation_time(self) -&gt; str:
+    &#34;&#34;&#34;The resource creation time of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;resourceCreationTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_id"><code class="name">var <span class="ident">resource_id</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource id of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_id(self) -&gt; str:
+    &#34;&#34;&#34;The resource id of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;resourceId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_name"><code class="name">var <span class="ident">resource_name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource name of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_name(self) -&gt; str:
+    &#34;&#34;&#34;The resource name of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;resourceName&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_type"><code class="name">var <span class="ident">resource_type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The resource type of the OversizedConfiguration event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def resource_type(self) -&gt; str:
+    &#34;&#34;&#34;The resource type of the OversizedConfiguration event.&#34;&#34;&#34;
+    return self[&#34;resourceType&#34;]</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></b></code>:
+<ul class="hlist">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get">get</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event">raw_event</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent"><code class="flex name class">
+<span>class <span class="ident">AWSConfigRuleEvent</span></span>
+<span>(</span><span>data: Dict[str, Any])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Events for AWS Config Rules
+Documentation:</p>
+<hr>
+<ul>
+<li><a href="https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_lambda-functions.html">https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_lambda-functions.html</a></li>
+</ul>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Lambda Event Source Event payload</dd>
+<dt><strong><code>json_deserializer</code></strong> :&ensp;<code>Callable</code>, optional</dt>
+<dd>function to deserialize <code>str</code>, <code>bytes</code>, bytearray<code> containing a JSON document to a Python </code>obj`,
+by default json.loads</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AWSConfigRuleEvent(DictWrapper):
+    &#34;&#34;&#34;Events for AWS Config Rules
+    Documentation:
+    --------------
+    - https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_lambda-functions.html
+    &#34;&#34;&#34;
+
+    def __init__(self, data: Dict[str, Any]):
+        super().__init__(data)
+        self._invoking_event: Optional[Any] = None
+        self._rule_parameters: Optional[Any] = None
+
+    @property
+    def version(self) -&gt; str:
+        &#34;&#34;&#34;The version of the event.&#34;&#34;&#34;
+        return self[&#34;version&#34;]
+
+    @property
+    def invoking_event(
+        self,
+    ) -&gt; AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:
+        &#34;&#34;&#34;The invoking payload of the event.&#34;&#34;&#34;
+        if self._invoking_event is None:
+            self._invoking_event = self[&#34;invokingEvent&#34;]
+
+        return get_invoke_event(json.loads(self._invoking_event))
+
+    @property
+    def raw_invoking_event(self) -&gt; str:
+        &#34;&#34;&#34;The raw invoking payload of the event.&#34;&#34;&#34;
+        return self[&#34;invokingEvent&#34;]
+
+    @property
+    def rule_parameters(self) -&gt; Dict:
+        &#34;&#34;&#34;The parameters of the event.&#34;&#34;&#34;
+        if self._rule_parameters is None:
+            self._rule_parameters = self[&#34;ruleParameters&#34;]
+
+        return json.loads(self._rule_parameters)
+
+    @property
+    def result_token(self) -&gt; str:
+        &#34;&#34;&#34;The result token of the event.&#34;&#34;&#34;
+        return self[&#34;resultToken&#34;]
+
+    @property
+    def event_left_scope(self) -&gt; bool:
+        &#34;&#34;&#34;The left scope of the event.&#34;&#34;&#34;
+        return self[&#34;eventLeftScope&#34;]
+
+    @property
+    def execution_role_arn(self) -&gt; str:
+        &#34;&#34;&#34;The execution role arn of the event.&#34;&#34;&#34;
+        return self[&#34;executionRoleArn&#34;]
+
+    @property
+    def config_rule_arn(self) -&gt; str:
+        &#34;&#34;&#34;The arn of the rule of the event.&#34;&#34;&#34;
+        return self[&#34;configRuleArn&#34;]
+
+    @property
+    def config_rule_name(self) -&gt; str:
+        &#34;&#34;&#34;The name of the rule of the event.&#34;&#34;&#34;
+        return self[&#34;configRuleName&#34;]
+
+    @property
+    def config_rule_id(self) -&gt; str:
+        &#34;&#34;&#34;The id of the rule of the event.&#34;&#34;&#34;
+        return self[&#34;configRuleId&#34;]
+
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the event.&#34;&#34;&#34;
+        return self[&#34;accountId&#34;]
+
+    @property
+    def evalution_mode(self) -&gt; Optional[str]:
+        &#34;&#34;&#34;The evalution mode of the event.&#34;&#34;&#34;
+        return self.get(&#34;evaluationMode&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></li>
+<li>collections.abc.Mapping</li>
+<li>collections.abc.Collection</li>
+<li>collections.abc.Sized</li>
+<li>collections.abc.Iterable</li>
+<li>collections.abc.Container</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.accountid"><code class="name">var <span class="ident">accountid</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The accountid of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def accountid(self) -&gt; str:
+    &#34;&#34;&#34;The accountid of the event.&#34;&#34;&#34;
+    return self[&#34;accountId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_arn"><code class="name">var <span class="ident">config_rule_arn</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The arn of the rule of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def config_rule_arn(self) -&gt; str:
+    &#34;&#34;&#34;The arn of the rule of the event.&#34;&#34;&#34;
+    return self[&#34;configRuleArn&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_id"><code class="name">var <span class="ident">config_rule_id</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The id of the rule of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def config_rule_id(self) -&gt; str:
+    &#34;&#34;&#34;The id of the rule of the event.&#34;&#34;&#34;
+    return self[&#34;configRuleId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_name"><code class="name">var <span class="ident">config_rule_name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The name of the rule of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def config_rule_name(self) -&gt; str:
+    &#34;&#34;&#34;The name of the rule of the event.&#34;&#34;&#34;
+    return self[&#34;configRuleName&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.evalution_mode"><code class="name">var <span class="ident">evalution_mode</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"><p>The evalution mode of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def evalution_mode(self) -&gt; Optional[str]:
+    &#34;&#34;&#34;The evalution mode of the event.&#34;&#34;&#34;
+    return self.get(&#34;evaluationMode&#34;)</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.event_left_scope"><code class="name">var <span class="ident">event_left_scope</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>The left scope of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def event_left_scope(self) -&gt; bool:
+    &#34;&#34;&#34;The left scope of the event.&#34;&#34;&#34;
+    return self[&#34;eventLeftScope&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.execution_role_arn"><code class="name">var <span class="ident">execution_role_arn</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The execution role arn of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def execution_role_arn(self) -&gt; str:
+    &#34;&#34;&#34;The execution role arn of the event.&#34;&#34;&#34;
+    return self[&#34;executionRoleArn&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.invoking_event"><code class="name">var <span class="ident">invoking_event</span> : <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged">AWSConfigConfigurationChanged</a> | <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification">AWSConfigScheduledNotification</a> | <a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration">AWSConfigOversizedConfiguration</a></code></dt>
+<dd>
+<div class="desc"><p>The invoking payload of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def invoking_event(
+    self,
+) -&gt; AWSConfigConfigurationChanged | AWSConfigScheduledNotification | AWSConfigOversizedConfiguration:
+    &#34;&#34;&#34;The invoking payload of the event.&#34;&#34;&#34;
+    if self._invoking_event is None:
+        self._invoking_event = self[&#34;invokingEvent&#34;]
+
+    return get_invoke_event(json.loads(self._invoking_event))</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.raw_invoking_event"><code class="name">var <span class="ident">raw_invoking_event</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The raw invoking payload of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def raw_invoking_event(self) -&gt; str:
+    &#34;&#34;&#34;The raw invoking payload of the event.&#34;&#34;&#34;
+    return self[&#34;invokingEvent&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.result_token"><code class="name">var <span class="ident">result_token</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The result token of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def result_token(self) -&gt; str:
+    &#34;&#34;&#34;The result token of the event.&#34;&#34;&#34;
+    return self[&#34;resultToken&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.rule_parameters"><code class="name">var <span class="ident">rule_parameters</span> : Dict</code></dt>
+<dd>
+<div class="desc"><p>The parameters of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def rule_parameters(self) -&gt; Dict:
+    &#34;&#34;&#34;The parameters of the event.&#34;&#34;&#34;
+    if self._rule_parameters is None:
+        self._rule_parameters = self[&#34;ruleParameters&#34;]
+
+    return json.loads(self._rule_parameters)</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The version of the event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def version(self) -&gt; str:
+    &#34;&#34;&#34;The version of the event.&#34;&#34;&#34;
+    return self[&#34;version&#34;]</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></b></code>:
+<ul class="hlist">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get">get</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event">raw_event</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification"><code class="flex name class">
+<span>class <span class="ident">AWSConfigScheduledNotification</span></span>
+<span>(</span><span>data: Dict[str, Any], json_deserializer: Optional[Callable] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Provides a single read only access to a wrapper dict</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Lambda Event Source Event payload</dd>
+<dt><strong><code>json_deserializer</code></strong> :&ensp;<code>Callable</code>, optional</dt>
+<dd>function to deserialize <code>str</code>, <code>bytes</code>, bytearray<code> containing a JSON document to a Python </code>obj`,
+by default json.loads</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AWSConfigScheduledNotification(DictWrapper):
+    @property
+    def accountid(self) -&gt; str:
+        &#34;&#34;&#34;The accountid of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;awsAccountId&#34;]
+
+    @property
+    def notification_creation_time(self) -&gt; str:
+        &#34;&#34;&#34;The notification creation time of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;notificationCreationTime&#34;]
+
+    @property
+    def record_version(self) -&gt; str:
+        &#34;&#34;&#34;The record version of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;recordVersion&#34;]
+
+    @property
+    def message_type(self) -&gt; str:
+        &#34;&#34;&#34;The message type of the ScheduledNotification event.&#34;&#34;&#34;
+        return self[&#34;messageType&#34;]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></li>
+<li>collections.abc.Mapping</li>
+<li>collections.abc.Collection</li>
+<li>collections.abc.Sized</li>
+<li>collections.abc.Iterable</li>
+<li>collections.abc.Container</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.accountid"><code class="name">var <span class="ident">accountid</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The accountid of the ScheduledNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def accountid(self) -&gt; str:
+    &#34;&#34;&#34;The accountid of the ScheduledNotification event.&#34;&#34;&#34;
+    return self[&#34;awsAccountId&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.message_type"><code class="name">var <span class="ident">message_type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The message type of the ScheduledNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def message_type(self) -&gt; str:
+    &#34;&#34;&#34;The message type of the ScheduledNotification event.&#34;&#34;&#34;
+    return self[&#34;messageType&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.notification_creation_time"><code class="name">var <span class="ident">notification_creation_time</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The notification creation time of the ScheduledNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def notification_creation_time(self) -&gt; str:
+    &#34;&#34;&#34;The notification creation time of the ScheduledNotification event.&#34;&#34;&#34;
+    return self[&#34;notificationCreationTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.record_version"><code class="name">var <span class="ident">record_version</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The record version of the ScheduledNotification event.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def record_version(self) -&gt; str:
+    &#34;&#34;&#34;The record version of the ScheduledNotification event.&#34;&#34;&#34;
+    return self[&#34;recordVersion&#34;]</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper">DictWrapper</a></b></code>:
+<ul class="hlist">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.get">get</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event" href="common.html#aws_lambda_powertools.utilities.data_classes.common.DictWrapper.raw_event">raw_event</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes" href="index.html">aws_lambda_powertools.utilities.data_classes</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.get_invoke_event" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.get_invoke_event">get_invoke_event</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged">AWSConfigConfigurationChanged</a></code></h4>
+<ul class="">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.configuration_item" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.configuration_item">configuration_item</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.configuration_item_diff" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.configuration_item_diff">configuration_item_diff</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.message_type" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.message_type">message_type</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.notification_creation_time" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.notification_creation_time">notification_creation_time</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.raw_configuration_item" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.raw_configuration_item">raw_configuration_item</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.record_version" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationChanged.record_version">record_version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged">AWSConfigConfigurationItemChanged</a></code></h4>
+<ul class="">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.accountid" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.accountid">accountid</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.availability_zone" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.availability_zone">availability_zone</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration">configuration</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_capture_time" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_capture_time">configuration_item_capture_time</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_status" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_status">configuration_item_status</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_version" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_item_version">configuration_item_version</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_state_id" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_state_id">configuration_state_id</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_state_md5_hash" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.configuration_state_md5_hash">configuration_state_md5_hash</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.region" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.region">region</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.related_events" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.related_events">related_events</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.relationships" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.relationships">relationships</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_arn" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_arn">resource_arn</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_creation_time" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_creation_time">resource_creation_time</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_id" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_id">resource_id</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_name" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_name">resource_name</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_type" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.resource_type">resource_type</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.supplementary_configuration" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.supplementary_configuration">supplementary_configuration</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.tags" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigConfigurationItemChanged.tags">tags</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration">AWSConfigOversizedConfiguration</a></code></h4>
+<ul class="">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.configuration_item_summary" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.configuration_item_summary">configuration_item_summary</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.message_type" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.message_type">message_type</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.notification_creation_time" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.notification_creation_time">notification_creation_time</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.raw_configuration_item_summary" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.raw_configuration_item_summary">raw_configuration_item_summary</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.record_version" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfiguration.record_version">record_version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary">AWSConfigOversizedConfigurationItemSummary</a></code></h4>
+<ul class="">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.accountid" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.accountid">accountid</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.availability_zone" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.availability_zone">availability_zone</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.change_type" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.change_type">change_type</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_capture_time" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_capture_time">configuration_item_capture_time</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_status" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_status">configuration_item_status</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_version" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_item_version">configuration_item_version</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_state_id" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_state_id">configuration_state_id</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_state_md5_hash" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.configuration_state_md5_hash">configuration_state_md5_hash</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.region" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.region">region</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_arn" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_arn">resource_arn</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_creation_time" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_creation_time">resource_creation_time</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_id" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_id">resource_id</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_name" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_name">resource_name</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_type" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigOversizedConfigurationItemSummary.resource_type">resource_type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent">AWSConfigRuleEvent</a></code></h4>
+<ul class="two-column">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.accountid" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.accountid">accountid</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_arn" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_arn">config_rule_arn</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_id" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_id">config_rule_id</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_name" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.config_rule_name">config_rule_name</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.evalution_mode" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.evalution_mode">evalution_mode</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.event_left_scope" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.event_left_scope">event_left_scope</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.execution_role_arn" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.execution_role_arn">execution_role_arn</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.invoking_event" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.invoking_event">invoking_event</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.raw_invoking_event" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.raw_invoking_event">raw_invoking_event</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.result_token" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.result_token">result_token</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.rule_parameters" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.rule_parameters">rule_parameters</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.version" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigRuleEvent.version">version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification">AWSConfigScheduledNotification</a></code></h4>
+<ul class="">
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.accountid" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.accountid">accountid</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.message_type" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.message_type">message_type</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.notification_creation_time" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.notification_creation_time">notification_creation_time</a></code></li>
+<li><code><a title="aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.record_version" href="#aws_lambda_powertools.utilities.data_classes.aws_config_rule_event.AWSConfigScheduledNotification.record_version">record_version</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
