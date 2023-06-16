@@ -19,7 +19,7 @@
         <link rel="next" href="../feature_flags/">
       
       <link rel="icon" href="../../media/aws-logo-light.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.16">
     
     
       
@@ -1429,6 +1429,8 @@
 
   <h1>Idempotency</h1>
 
+<!-- markdownlint-disable MD051 -->
+
 <p>The idempotency utility provides a simple solution to convert your Lambda functions into idempotent operations which
 are safe to retry.</p>
 <h2 id="terminology">Terminology<a class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
@@ -2692,6 +2694,10 @@ This means that new invocations will execute your code again despite having the 
 <h3 id="making-idempotency-key-required">Making idempotency key required<a class="headerlink" href="#making-idempotency-key-required" title="Permanent link">&para;</a></h3>
 <p>If you want to enforce that an idempotency key is required, you can set <strong><code>raise_on_no_idempotency_key</code></strong> to <code>True</code>.</p>
 <p>This means that we will raise <strong><code>IdempotencyKeyError</code></strong> if the evaluation of <strong><code>event_key_jmespath</code></strong> is <code>None</code>.</p>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>To prevent errors, transactions will not be treated as idempotent if <strong><code>raise_on_no_idempotency_key</code></strong> is set to <code>False</code> and the evaluation of <strong><code>event_key_jmespath</code></strong> is <code>None</code>. Therefore, no data will be fetched, stored, or deleted in the idempotency storage layer.</p>
+</details>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">app.py</label><label for="__tabbed_7_2">Success Event</label><label for="__tabbed_7_3">Failure Event</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -3501,7 +3507,7 @@ This means it is possible to pass a mocked Table resource, or stub various metho
   <small>
     
       Last update:
-      2023-06-15
+      2023-06-16
     
   </small>
 </div>
@@ -3554,11 +3560,15 @@ This means it is possible to pass a mocked Table resource, or stub various metho
     <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.indexes", "navigation.tracking", "content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a51614de.min.js"></script>
       
-        <script src="../../javascript/aws-amplify.min.js"></script>
+        
+          <script src="../../javascript/aws-amplify.min.js"></script>
+        
       
-        <script src="../../javascript/extra.js"></script>
+        
+          <script src="../../javascript/extra.js"></script>
+        
       
     
   </body>
