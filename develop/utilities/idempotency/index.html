@@ -825,6 +825,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#optional-idempotency-key" class="md-nav__link">
+    Optional idempotency key
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1231,6 +1238,13 @@
           <li class="md-nav__item">
   <a href="#lambda-request-timeout" class="md-nav__link">
     Lambda request timeout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-idempotency-key" class="md-nav__link">
+    Optional idempotency key
   </a>
   
 </li>
@@ -2355,6 +2369,32 @@ This means that new invocations will execute your code again despite having the 
         Lambda--&gt;&gt;Client: Response sent to client
     end</code></pre>
 <i>Idempotent request during and after Lambda timeouts</i>
+</center></p>
+<h4 id="optional-idempotency-key">Optional idempotency key<a class="headerlink" href="#optional-idempotency-key" title="Permanent link">&para;</a></h4>
+<p><center>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Client
+    participant Lambda
+    participant Persistence Layer
+    alt request with idempotency key
+        Client-&gt;&gt;Lambda: Invoke (event)
+        Lambda-&gt;&gt;Persistence Layer: Get or set idempotency_key=hash(payload)
+        activate Persistence Layer
+        Note over Lambda,Persistence Layer: Set record status to INPROGRESS. &lt;br&gt; Prevents concurrent invocations &lt;br&gt; with the same payload
+        Lambda--&gt;&gt;Lambda: Call your function
+        Lambda-&gt;&gt;Persistence Layer: Update record with result
+        deactivate Persistence Layer
+        Persistence Layer--&gt;&gt;Persistence Layer: Update record
+        Note over Lambda,Persistence Layer: Set record status to COMPLETE. &lt;br&gt; New invocations with the same payload &lt;br&gt; now return the same result
+        Lambda--&gt;&gt;Client: Response sent to client
+    else request(s) without idempotency key
+        Client-&gt;&gt;Lambda: Invoke (event)
+        Note over Lambda: Idempotency key is missing
+        Note over Persistence Layer: Skips any operation to fetch, update, and delete
+        Lambda--&gt;&gt;Lambda: Call your function
+        Lambda--&gt;&gt;Client: Response sent to client
+    end</code></pre>
+<i>Optional idempotency key</i>
 </center></p>
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h3 id="persistence-layers">Persistence layers<a class="headerlink" href="#persistence-layers" title="Permanent link">&para;</a></h3>
