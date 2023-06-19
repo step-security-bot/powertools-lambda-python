@@ -4,6 +4,15 @@
 <a name="unreleased"></a>
 # Unreleased
 
+## Features
+
+* **feature_flags:** add modulo range condition for segmented experimentation support ([#2331](https://github.com/aws-powertools/powertools-lambda-python/issues/2331))
+
+## Maintenance
+
+* rename all previous references
+* **deps-dev:** bump pytest-mock from 3.10.0 to 3.11.1 ([#2485](https://github.com/aws-powertools/powertools-lambda-python/issues/2485))
+
 
 <a name="v2.17.0"></a>
 ## [v2.17.0] - 2023-06-16
@@ -2799,7 +2808,7 @@
 * unnecessary return; better error handling
 * snake_case
 * comment out validators [#118](https://github.com/aws-powertools/powertools-lambda-python/issues/118)
-* CR fixes Merge branch 'develop' of https://github.com/aws-powertools/powertools-lambda-python into pydantic
+* CR fixes Merge branch 'develop' of https://github.com/awslabs/aws-lambda-powertools-python into pydantic
 * reduce complexity of dynamo envelope
 * poetry update + pydantic, typing_extensions as optional
 * add only pydantic (+1 squashed commit) Squashed commits: [804f251] fix poetry.lock, revert changes
