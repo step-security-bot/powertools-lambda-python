@@ -68,6 +68,11 @@ jobs:
         SOURCE_CODE_HASH: ${{ steps.integrity.outputs.SOURCE_CODE_HASH }}
         RELEASE_VERSION: ${{ steps.release_version.outputs.RELEASE_VERSION }}
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - name: Export release version
         id: release_version
         # transform tag format `v<version` to `<version>`
@@ -128,6 +133,11 @@ jobs:
       SOURCE_INTEGRITY_HASH: ${{ needs.seal.outputs.SOURCE_CODE_HASH }}
     steps:
       # NOTE: we need actions/checkout to configure git first (pre-commit hooks in make dev)
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9  # v3.5.3
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -169,6 +179,11 @@ jobs:
       SOURCE_INTEGRITY_HASH: ${{ needs.seal.outputs.SOURCE_CODE_HASH }}
     steps:
       # NOTE: we need actions/checkout to configure git first (pre-commit hooks in make dev)
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9  # v3.5.3
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -228,6 +243,11 @@ jobs:
       BUILD_INTEGRITY_HASH: ${{ needs.build.outputs.BUILD_INTEGRITY_HASH }}
     steps:
       # NOTE: we need actions/checkout in order to use our local actions (e.g., ./.github/actions)
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9  # v3.5.3
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -269,6 +289,11 @@ jobs:
       SOURCE_INTEGRITY_HASH: ${{ needs.seal.outputs.SOURCE_CODE_HASH }}
     steps:
       # NOTE: we need actions/checkout to authenticate and configure git first
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9  # v3.5.3
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -315,6 +340,11 @@ jobs:
       SOURCE_INTEGRITY_HASH: ${{ needs.seal.outputs.SOURCE_CODE_HASH }}
     steps:
       # NOTE: we need actions/checkout to authenticate and configure git first
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9  # v3.5.3
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -375,6 +405,11 @@ jobs:
     env:
       RELEASE_VERSION: ${{ needs.seal.outputs.RELEASE_VERSION }}
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9  # v3.5.3
         with:
           ref: ${{ env.RELEASE_COMMIT }}

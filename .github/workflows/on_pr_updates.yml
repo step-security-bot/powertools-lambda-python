@@ -29,6 +29,11 @@ jobs:
   fail-for-draft:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@55d479fb1c5bcad5a4f9099a5d9f37c8857b2845 # v2.4.1
+        with:
+          egress-policy: audit
+
       - name: Block if it doesn't minimum requirements
         if: contains(github.event.pull_request.labels.*.name, 'do-not-merge')
         run: |
