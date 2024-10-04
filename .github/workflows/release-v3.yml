@@ -73,6 +73,11 @@ jobs:
         artifact_name: ${{ steps.seal_source_code.outputs.artifact_name }}
         RELEASE_VERSION: ${{ steps.release_version.outputs.RELEASE_VERSION }}
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Export release version
         id: release_version
         # transform tag format `v<version` to `<version>`
@@ -115,6 +120,11 @@ jobs:
       contents: read
     steps:
       # NOTE: we need actions/checkout to configure git first (pre-commit hooks in make dev)
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -156,6 +166,11 @@ jobs:
       attestation_hashes: ${{ steps.encoded_hash.outputs.attestation_hashes }}
     steps:
       # NOTE: we need actions/checkout to configure git first (pre-commit hooks in make dev)
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -225,6 +240,11 @@ jobs:
       RELEASE_VERSION: ${{ needs.seal.outputs.RELEASE_VERSION }}
     steps:
       # NOTE: we need actions/checkout in order to use our local actions (e.g., ./.github/actions)
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -259,6 +279,11 @@ jobs:
       contents: write
     steps:
       # NOTE: we need actions/checkout to authenticate and configure git first
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -303,6 +328,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # NOTE: we need actions/checkout to authenticate and configure git first
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
         with:
           ref: ${{ env.RELEASE_COMMIT }}
@@ -357,6 +387,11 @@ jobs:
     env:
       RELEASE_VERSION: ${{ needs.seal.outputs.RELEASE_VERSION }}
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
         with:
           ref: ${{ env.RELEASE_COMMIT }}

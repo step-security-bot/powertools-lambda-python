@@ -47,6 +47,11 @@ jobs:
     needs: get_pr_details
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
       - name: "Ensure related issue is present"
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
@@ -66,6 +71,11 @@ jobs:
     permissions:
       pull-requests: write  # label and comment on PR if missing acknowledge section (requirement)
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # v4.2.0
       - name: "Ensure acknowledgement section is present"
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1

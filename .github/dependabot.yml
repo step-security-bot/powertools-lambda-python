@@ -87,3 +87,18 @@ updates:
       layer-balancer:
         patterns:
           - "*"
+
+  - package-ecosystem: pip
+    directory: /tests/performance/data_masking/load_test_data_masking/pt-load-test-stack/function_1024
+    schedule:
+      interval: daily
+
+  - package-ecosystem: pip
+    directory: /tests/performance/data_masking/load_test_data_masking/pt-load-test-stack/function_128
+    schedule:
+      interval: daily
+
+  - package-ecosystem: pip
+    directory: /tests/performance/data_masking/load_test_data_masking/pt-load-test-stack/function_1769
+    schedule:
+      interval: daily

@@ -37,6 +37,9 @@ on:
 name: Layer Rename
 run-name: Layer Rename - ${{ inputs.environment }}
 
+permissions:
+  contents: read
+
 jobs:
   download:
     runs-on: ubuntu-latest
@@ -53,6 +56,11 @@ jobs:
           - AWSLambdaPowertoolsPythonV3-python312
     environment: layer-prod
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
         with:
@@ -125,6 +133,11 @@ jobs:
           - "us-west-2"
     environment: layer-${{ inputs.environment }}
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Download Zip
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:

@@ -7,6 +7,7 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: "f71fa2c1f9cf5cb705f73dffe4b21f7c61470ba9" # v4.4.0
     hooks:
+      - id: end-of-file-fixer
       - id: check-merge-conflict
       - id: trailing-whitespace
       - id: check-toml
@@ -51,3 +52,11 @@ repos:
     rev: "7804d652c0460f0b61ea9bb2c1f202bfcdbbf144" # v8.16.3
     hooks:
       - id: gitleaks
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/pylint-dev/pylint
+    rev: v2.17.2
+    hooks:
+      - id: pylint

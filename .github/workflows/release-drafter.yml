@@ -27,6 +27,11 @@ jobs:
     permissions:
       contents: write  # create release in draft mode
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v5.20.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
